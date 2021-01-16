@@ -53,7 +53,7 @@ class DrawingUtil {
         const sf2 : number = ScaleUtil.divideScale(sf, 1, parts)
         context.save()
         context.translate(w / 2, 0)
-        DrawingUtil.drawLine(context, -size * 0.5 * sf1, 0.8 * h, size * 0.5 * sf1, 0.8 * h)
+        DrawingUtil.drawLine(context, -size *  sf1, 0.8 * h, size * sf1, 0.8 * h)
         DrawingUtil.drawCircle(context, 0, -r + 0.5 * h * sf2, r)
         context.restore()
     }
@@ -62,6 +62,8 @@ class DrawingUtil {
         context.lineCap = 'round'
         context.lineWidth = Math.min(w, h) / strokeFactor 
         context.lineCap = 'round'
+        context.strokeStyle = colors[i]
+        context.fillStyle = colors[i]
         DrawingUtil.drawExpandLineBallDown(context, scale)
     }
 }
