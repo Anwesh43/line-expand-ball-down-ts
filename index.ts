@@ -205,3 +205,25 @@ class LineExpandBallDown {
         this.curr.startUpdating(cb)
     }
 }
+
+class Renderer {
+
+    lebd : LineExpandBallDown = new LineExpandBallDown()
+    animator : Animator = new Animator()
+
+    render(context : CanvasRenderingContext2D) {
+        this.lebd.draw(context)
+    }
+
+    handleTap(cb : Function) {
+        this.lebd.startUpdating(() => {
+            this.animator.start(() => {
+                cb()
+                this.lebd.update(() => {
+                    this.animator.stop()
+                    cb()
+                })
+            })
+        })
+    }
+}
